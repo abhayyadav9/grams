@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import connectDB from "./database/db.js";
 import userRoute from "./routes/user.route.js";
+import messageRoute from "./routes/message.route.js";
+
+import postRoute from "./routes/post.route.js";
 
 dotenv.config({});
 const app = express();
@@ -25,7 +28,10 @@ app.get("/", (_, res) => {
   });
 });
 
-app.use("/api/v1/user",userRoute)
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/message", messageRoute);
+
+app.use("/api/v1/post", postRoute);
 
 const port = process.env.PORT || 5000;
 

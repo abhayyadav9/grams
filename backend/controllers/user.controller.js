@@ -35,6 +35,15 @@ export const register = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
+
+
+
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -59,6 +68,16 @@ export const login = async (req, res) => {
         .json({ message: "Invalid email or password", success: false });
     }
 
+    
+    const token = await jwt.sign(
+      {
+        userId: user._id, // Changed `user._id` to `user.id`
+      },
+      process.env.SECRET_KEY,
+      { expiresIn: "1d" }
+    );
+
+    
     user = {
       _id: user._id,
       username: user.username, // Changed `username` to `name`
@@ -69,14 +88,6 @@ export const login = async (req, res) => {
       following: user.following,
       posts: user.posts,
     };
-
-    const token = await jwt.sign(
-      {
-        userId: user._id, // Changed `user._id` to `user.id`
-      },
-      process.env.SECRET_KEY,
-      { expiresIn: "1d" }
-    );
 
     return res
       .cookie("token", token, {
