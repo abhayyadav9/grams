@@ -3,7 +3,7 @@ import cloudinary from "../database/cloudinary.js";
 import { Post } from "../models/post.model.js";
 import { User } from "../models/user-models.js";
 import { Comment } from "../models/comment-model.js";
-// import { getReceiverSocketId, io } from "../socket/socket.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 
 
@@ -92,6 +92,9 @@ export const getUserPost = async (req, res) => {
         console.log(error);
     }
 }
+
+
+
 export const likePost = async (req, res) => {
     try {
         const likeKrneWalaUserKiId = req.id;
@@ -125,6 +128,9 @@ export const likePost = async (req, res) => {
 
     }
 }
+
+
+
 export const dislikePost = async (req, res) => {
     try {
         const likeKrneWalaUserKiId = req.id;
@@ -138,6 +144,7 @@ export const dislikePost = async (req, res) => {
 
         // implement socket io for real time notification
         const user = await User.findById(likeKrneWalaUserKiId).select('username profilePicture');
+
         const postOwnerId = post.author.toString();
         if(postOwnerId !== likeKrneWalaUserKiId){
             // emit a notification event
@@ -159,6 +166,8 @@ export const dislikePost = async (req, res) => {
 
     }
 }
+
+
 export const addComment = async (req,res) =>{
     try {
         const postId = req.params.id;
