@@ -25,7 +25,7 @@ const CommentDialog = ({ open, setOpen, post }) => {
   const commentHandler = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/post/${post._id}/comment`,
+        `https://grams.onrender.com/api/v1/post/${post._id}/comment`,
         { text },
         {
           headers: {

@@ -12,7 +12,7 @@ const useGetAllMessage = () => {
       const fetchAllMessage = async () => {
         try {
           const res = await axios.get(
-            `http://localhost:8000/api/v1/message/all/${selectedUser._id}`, // Ensure correct field name for user ID
+            `https://grams.onrender.com/api/v1/message/all/${selectedUser._id}`, // Ensure correct field name for user ID
             {
               withCredentials: true,
             }
@@ -45,7 +45,7 @@ export default useGetAllMessage;
 //     const fetchAllMessage = async () => {
 //       try {
 //         const res = await axios.get(
-//           `http://localhost:8000/api/v1/message/all/${selectedUser?._id}`,
+//           `https://grams.onrender.com/api/v1/message/all/${selectedUser?._id}`,
 
 //           { withCredentials: true }
 //         );

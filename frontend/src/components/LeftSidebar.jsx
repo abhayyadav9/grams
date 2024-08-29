@@ -32,7 +32,7 @@ const LeftSidebar = () => {
   const logoutHandler = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/v1/user/logout",
+        "https://grams.onrender.com/api/v1/user/logout",
         { withCredentials: true }
       );
       if (res.data.success) {
@@ -157,7 +157,7 @@ export default LeftSidebar;
 
 //   const logoutHandler = async () => {
 //     try {
-//       const res = await axios.get("http://localhost:8000/api/v1/user/logout", {
+//       const res = await axios.get("https://grams.onrender.com/api/v1/user/logout", {
 //         withCredentials: true,
 //       });
 
