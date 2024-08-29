@@ -1,7 +1,7 @@
 import { User } from "../models/user-models.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import getDataUri from "../utils/datauri.js";
+import getDataUri from "../utils/dataUri.js"
 import cloudinary from "../database/cloudinary.js";
 import { Post } from "../models/post.model.js";
 export const register = async (req, res) => {
@@ -121,7 +121,7 @@ export const editProfile = async (req, res) => {
         let cloudResponse;
 
         if (profilePicture) {
-            const fileUri = getDataUri(profilePicture);
+            const fileUri =getDataUri(profilePicture);
             cloudResponse = await cloudinary.uploader.upload(fileUri);
         }
 
