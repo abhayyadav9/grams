@@ -27,11 +27,12 @@ app.use(cors(corsOptions));
 
 // Routes
 app.get("/", (_, res) => {
-  return res.status(200).json({
-    message: "This is from server",
-    success: true,
-  });
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
+
+
+
+
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/message", messageRoute);
 app.use("/api/v1/post", postRoute);
