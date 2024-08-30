@@ -25,20 +25,20 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Serve static files first
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
+
 // Routes
-app.get("/", (_, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-});
-
-
-
-
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/message", messageRoute);
 app.use("/api/v1/post", postRoute);
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+// Root route
+app.get("/", (_, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+});
+
+// Catch-all route for client-side routing
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
 });
